@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./szablonAplikacji.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+    <ui:define name="content">
+        <h1>Lista jachtów</h1>
+        <h:form>
+            <table>
+                <tr><th>Nazwa</th><th>Typ</th><th>Ilość Osób</th><th>Max KG</th></tr>
+                <ui:repeat value="#{JachtBean.lista}" var="jacht">
+                    <tr>
+                        <td>#{jacht.jiloscosob}</td>
+                        <td>#{jacht.jmaxkg}</td>
+                        <td>#{jacht.jnazwa}</td>
+                        <td>#{jacht.jtyp}</td>
+                    </tr>
+                </ui:repeat>
+            </table>
+        </h:form>
+    </ui:define>
+</ui:composition>

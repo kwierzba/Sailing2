@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="./szablonAplikacji.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml">
+    
+    <ui:define name="content">
+        <h1>Dodawanie Jachtu</h1>
+        <h:form>
+            <table>
+                <tr><td>Nazwa</td><td><h:inputText id="nazwa" value="#{JachtBean.jacht.jnazwa}" required="true" /></td></tr>
+                <tr><td>Typ</td><td><h:inputText id="adres" value="#{JachtBean.jacht.jtyp}" required="true" /></td></tr>
+                <tr><td>Max kg</td><td><h:inputText id="kontakt" value="#{JachtBean.jacht.jmaxkg}" required="true" /></td></tr>
+               <tr><td>Ilosc Osób</td><td><h:inputTextarea id="opis" value="#{JachtBean.jacht.jiloscosob}" required="true" /></td></tr>
+                <tr><td></td><td><h:commandButton action="#{JachtBean.dodaj}" value="Dodaj" /></td></tr>
+            </table>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
