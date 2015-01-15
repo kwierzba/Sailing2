@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="./szablonAplikacji.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:p="http://primefaces.org/ui">
+<ui:define name="content">
+
+<h:form>
+	<p:growl id="growl" showDetail="true"/> 
+    <p:panel id="panel" header="Dodaj Jacht" style="margin-bottom:10px;">
+    <h:panelGrid columns="2" columnClasses="column" cellpadding="4">
+        <h:outputLabel for="nazwa" value="Nazwa:" />
+        <p:inplace id="nazwa">
+            <p:inputText value="#{JachtBean.jacht.jnazwa}" required="true"/>
+        </p:inplace>
+        <h:outputLabel for="typ" value="Typ:" />
+        <p:inplace id="typ">
+            <p:inputText value="#{JachtBean.jacht.jtyp}" required="true"/>
+        </p:inplace>
+        <h:outputLabel for="maxkg" value="Max Kg:" />
+        <p:inplace id="maxkg">
+            <p:inputText value="#{JachtBean.jacht.jmaxkg}" required="true"/>
+        </p:inplace>
+        <h:outputLabel for="iloscosob" value="Ilosc Osób:"/>
+        <p:inplace id="iloscosob">
+            <p:inputText value="#{JachtBean.jacht.jiloscosob}" required="true"/>
+        </p:inplace>
+
+</h:panelGrid>
+</p:panel>
+<p:commandButton action="#{JachtBean.edytuj}" value="Edytuj" update="panel, growl" resetValues="true" styleClass="delta"/>
+</h:form>
+</ui:define>
+</ui:composition>

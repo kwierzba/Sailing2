@@ -4,18 +4,24 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
                 template="./szablonAplikacji.xhtml"
-                xmlns="http://www.w3.org/1999/xhtml">
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:p="http://primefaces.org/ui">
     
     <ui:define name="content">
-        <h1>Dodawanie Jachtu</h1>
+
         <h:form>
+        <p:growl id="growl" showDetail="true"/> 
+        <p:panel id="panel" header="Dodaj Jacht" style="margin-bottom:10px;">
+
             <table>
-                <tr><td>Nazwa</td><td><h:inputText id="nazwa" value="#{JachtBean.jacht.jnazwa}" required="true" /></td></tr>
-                <tr><td>Typ</td><td><h:inputText id="adres" value="#{JachtBean.jacht.jtyp}" required="true" /></td></tr>
-                <tr><td>Max kg</td><td><h:inputText id="kontakt" value="#{JachtBean.jacht.jmaxkg}" required="true" /></td></tr>
-               <tr><td>Ilosc Osób</td><td><h:inputTextarea id="opis" value="#{JachtBean.jacht.jiloscosob}" required="true" /></td></tr>
-                <tr><td></td><td><h:commandButton action="#{JachtBean.dodaj}" value="Dodaj" /></td></tr>
+                <tr><td>Nazwa</td><td><p:inputText id="nazwa" value="#{JachtBean.jacht.jnazwa}" required="true" /></td></tr>
+                <tr><td>Typ</td><td><p:inputText id="typ" value="#{JachtBean.jacht.jtyp}" required="true" /></td></tr>
+                <tr><td>Max kg</td><td><p:inputText id="maxkg" value="#{JachtBean.jacht.jmaxkg}" required="true" /></td></tr>
+               <tr><td>Ilosc Osób</td><td><p:inputTextarea id="iloscosob" value="#{JachtBean.jacht.jiloscosob}" required="true" /></td></tr>
+                <tr><td></td><td><p:commandButton action="#{JachtBean.dodaj}" update="panel, growl" resetValues="true"  value="Dodaj" styleClass="delta">
+                </p:commandButton> </td></tr>
             </table>
+            </p:panel>
         </h:form>
     </ui:define>
 

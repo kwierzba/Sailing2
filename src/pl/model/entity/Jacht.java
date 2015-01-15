@@ -43,7 +43,7 @@ public class Jacht implements Serializable {
 	public Jacht() {
 	}
 
-	public long getId() {
+	public Integer getId() {
 		return this.id;
 	}
 

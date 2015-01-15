@@ -7,19 +7,49 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui">
     <ui:define name="content">
-        <h1>Lista jachtów</h1>
-        <h:form>
-            <table>
-                <tr><th>Nazwa</th><th>Typ</th><th>Ilość Osób</th><th>Max KG</th></tr>
-                <ui:repeat value="#{JachtBean.lista}" var="jacht">
-                    <tr>
-                        <td>#{jacht.jiloscosob}</td>
-                        <td>#{jacht.jmaxkg}</td>
-                        <td>#{jacht.jnazwa}</td>
-                        <td>#{jacht.jtyp}</td>
-                    </tr>
-                </ui:repeat>
-            </table>
-        </h:form>
-    </ui:define>
+<h:form id="form"> 
+<p:growl id="growl" showDetail="true"/> 
+
+ <p:dataTable id="table"  value="#{JachtBean.lista}"  var="jacht">
+    <p:column headerText="Id">
+        <h:outputText value="#{jacht.id}" />
+    </p:column>
+ 
+    <p:column headerText="Nazwa">
+        <h:outputText value="#{jacht.jnazwa}" />
+    </p:column>
+ 
+    <p:column headerText="Typ">
+        <h:outputText value="#{jacht.jtyp}" />
+    </p:column>
+ 
+    <p:column headerText="Max Kg">
+        <h:outputText value="#{jacht.jmaxkg}" />
+    </p:column>
+    
+    <p:column headerText="Ilość Osób">
+        <h:outputText value="#{jacht.jiloscosob}" />
+    </p:column>
+    
+    <p:column headerText="Edytuj">
+        <p:commandLink id="edytuj" value="Edytuj" 
+                                       action="#{JachtBean.zaladujDoEdycji}" 
+                                       actionListener="#{JachtBean.JachtListener}">
+                            <f:param name="jachtID" value="#{jacht.id}"/>
+        </p:commandLink>
+    </p:column>
+    
+    <p:column headerText="Usuń">
+        <p:commandLink id="usun" value="Usuń" 
+                                       action="#{JachtBean.usun}" 
+                                       actionListener="#{JachtBean.JachtListener}"
+                                       update=":form"
+                                       oncomplete="table.filter();">
+                            <f:param name="jachtID" value="#{jacht.id}"/>
+        </p:commandLink> 
+    </p:column>
+</p:dataTable>
+
+</h:form>
+</ui:define>
 </ui:composition>
