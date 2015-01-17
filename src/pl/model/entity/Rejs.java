@@ -1,7 +1,9 @@
 package pl.model.entity;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.Date;
 import java.util.List;
 
@@ -18,7 +20,7 @@ public class Rejs implements Serializable {
 
 	@Id
 	@Column(unique=true, nullable=false, precision=22)
-	private long id;
+	private Integer id;
 
 	@Temporal(TemporalType.DATE)
 	@Column(nullable=false)
@@ -35,22 +37,22 @@ public class Rejs implements Serializable {
 	private String rportpocz;
 
 	//bi-directional many-to-one association to Jacht
-	@ManyToOne
-	@JoinColumn(name="JIDFK", nullable=false)
+	@JoinColumn(name="JIDFK", nullable=false, referencedColumnName = "id")
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Jacht jacht;
 
 	//bi-directional many-to-one association to Wypozyczenie
-	@OneToMany(mappedBy="rej")
+	@OneToMany(mappedBy="rejs")
 	private List<Wypozyczenie> wypozyczenies;
 
 	public Rejs() {
 	}
 
-	public long getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -115,5 +117,30 @@ public class Rejs implements Serializable {
 
 		return wypozyczeny;
 	}
+	
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+	
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Rejs)) {
+            return false;
+        }
+        Rejs other = (Rejs) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "pl.model.entity.Rejs[ id=" + id + " ]";
+    }
 
 }

@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="./szablonAplikacji.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:p="http://primefaces.org/ui">
+<ui:define name="content">
+
+<h:form>
+	<p:growl id="growl" showDetail="true"/> 
+    <p:panel id="panel" header="Edytuj rejs" style="margin-bottom:10px;">
+    <h:panelGrid columns="2" columnClasses="column" cellpadding="4">
+        <p:outputLabel for="datapocz" value="Data Zaokrętowania:" />
+        <p:inplace id="datapocz">
+            <p:calendar value="#{RejsBean.rejs.rdatapocz}" pattern="dd-MM-yyyy" mask="true" required="true" />
+        </p:inplace>
+        <p:outputLabel for="datakoniec" value="Data Wyokrętowania:" />
+        <p:inplace id="datakoniec">
+            <p:calendar value="#{RejsBean.rejs.rdatakoniec}" pattern="dd-MM-yyyy" mask="true" required="true" />
+        </p:inplace>
+        <p:outputLabel for="portpocz" value="Port Zaokrętowania:" />
+        <p:inplace id="portpocz">
+            <p:inputText value="#{RejsBean.rejs.rportpocz}" required="true"/>
+        </p:inplace>
+        <p:outputLabel for="portkoniec" value="Port Wyokrętowania:"/>
+        <p:inplace id="portkoniec">
+            <p:inputText value="#{RejsBean.rejs.rportkoncowy}" required="true"/>
+        </p:inplace>
+
+</h:panelGrid>
+</p:panel>
+<p:commandButton action="#{RejsBean.edytuj}" value="Zapisz" update="panel, growl" resetValues="true" styleClass="delta"/>
+</h:form>
+</ui:define>
+</ui:composition>

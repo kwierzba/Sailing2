@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./szablonAplikacji.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+    <ui:define name="content">
+<h:form id="form"> 
+<p:growl id="growl" showDetail="true"/> 
+
+ <p:dataTable id="table"  value="#{NajemcaBean.lista}"  var="najemca">
+    <p:column headerText="Id">
+        <h:outputText value="#{najemca.id}" />
+    </p:column>
+ 
+    <p:column headerText="Imie">
+        <h:outputText value="#{najemca.nimie}" />
+    </p:column>
+ 
+    <p:column headerText="Nazwisko">
+        <h:outputText value="#{najemca.nnazwisko}" />
+    </p:column>
+ 
+    <p:column headerText="Miasto">
+        <h:outputText value="#{najemca.nmiasto}" />
+    </p:column>
+    
+    <p:column headerText="Ulica">
+        <h:outputText value="#{najemca.nulica}" />
+    </p:column>
+    
+     <p:column headerText="Numer Lokalu">
+        <h:outputText value="#{najemca.nnrlokalu}" />
+    </p:column>
+    
+   	<p:column headerText="Numer Telefonu">
+        <h:outputText value="#{najemca.ntelefon}" />
+    </p:column>
+    
+        <p:column headerText="Pesel">
+        <h:outputText value="#{najemca.npesel}" />
+    </p:column>
+    
+    <p:column headerText="Edytuj">
+        <p:commandLink id="edytuj" value="Edytuj" 
+                                       action="#{NajemcaBean.zaladujDoEdycji}" 
+                                       actionListener="#{NajemcaBean.najemcaListener}">
+                            <f:param name="najemcaID" value="#{najemca.id}"/>
+        </p:commandLink>
+    </p:column>
+    
+    <p:column headerText="Usuń">
+        <p:commandLink id="usun" value="Usuń" 
+                                       action="#{NajemcaBean.usun}" 
+                                       actionListener="#{NajemcaBean.najemcaListener}"
+                                       update=":form"
+                                       oncomplete="table.filter();">
+                            <f:param name="najemcaID" value="#{najemca.id}"/>
+        </p:commandLink> 
+    </p:column>
+</p:dataTable>
+
+</h:form>
+</ui:define>
+</ui:composition>

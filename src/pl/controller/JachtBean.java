@@ -29,7 +29,7 @@ public class JachtBean {
 		return list;
 	}
 
-	public void JachtListener(ActionEvent ae) {
+	public void jachtListener(ActionEvent ae) {
 		String ids = FacesContext.getCurrentInstance().getExternalContext()
 				.getRequestParameterMap().get("jachtID").toString();
 		int jId = Integer.parseInt(ids);
@@ -40,7 +40,7 @@ public class JachtBean {
 		EntityManager em = DBManager.getManager().createEntityManager();
 		this.jacht = em.find(Jacht.class, jacht.getId());
 		em.close();
-		return "edytujjacht.xhtml";
+		return "edytujJacht.xhtml";
 	}
 
 	public String usun() {
@@ -75,7 +75,7 @@ public class JachtBean {
 		em.close();
 		this.dodajInformacje("Zmieniono dane jachtu!");
 		this.jacht = new Jacht();
-		return "pokazjacht.xhtml";
+		return "pokazJacht.xhtml";
 	}
 
 	public void dodajInformacje(String s) {

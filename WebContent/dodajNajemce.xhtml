@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="./szablonAplikacji.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:p="http://primefaces.org/ui">
+    
+    <ui:define name="content">
+
+        <h:form>
+        <p:growl id="growl" showDetail="true"/> 
+        <p:panel id="panel" header="Dodaj Najemce" style="margin-bottom:10px;">
+
+            <table>
+                <tr><td>
+                <p:outputLabel for="imie" value="Imie:" /></td><td>
+                <p:inputText id="imie" value="#{NajemcaBean.najemca.nimie}" required="true" /></td></tr>
+                <tr><td>
+                <p:outputLabel for="nazwisko" value="Nazwisko:" /></td><td>
+                <p:inputText id="nazwisko" value="#{NajemcaBean.najemca.nnazwisko}" required="true" /></td></tr>
+                <tr><td>
+                <p:outputLabel for="miasto" value="Miasto:" /></td><td>
+                <p:inputText id="miasto" value="#{NajemcaBean.najemca.nmiasto}" required="false" /></td></tr>
+                <tr><td>
+                <p:outputLabel for="ulica" value="Ulica:" /></td><td>
+                <p:inputTextarea id="ulica" value="#{NajemcaBean.najemca.nulica}" required="false" /></td></tr>
+                <tr><td>
+				<p:outputLabel for="nrlokalu" value="Numer Lokalu:" /></td><td>
+                <p:inputTextarea id="nrlokalu" value="#{NajemcaBean.najemca.nnrlokalu}" required="false" /></td></tr>
+                <tr><td>
+                <p:outputLabel for="phone" value="Phone:" />
+        		</td><td>
+                <p:inputMask id="phone" value="#{NajemcaBean.najemca.ntelefon}" mask="999-999-999"/></td></tr>
+                <tr><td>
+				<p:outputLabel for="nrpesel" value="Pesel:" /></td><td>
+                <p:inputMask id="nrpesel" value="#{NajemcaBean.najemca.npesel}" required="true" mask="99999999999" /></td></tr>
+                <tr><td></td><td>
+                <p:commandButton action="#{NajemcaBean.dodaj}" update="panel, growl" resetValues="true"  value="Dodaj" styleClass="delta">
+                </p:commandButton> </td></tr>
+            </table>
+            </p:panel>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

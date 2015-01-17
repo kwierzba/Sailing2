@@ -41,7 +41,7 @@ public class Wypozyczenie implements Serializable {
 	//bi-directional many-to-one association to Rejs
 	@ManyToOne
 	@JoinColumn(name="RIDFK", nullable=false)
-	private Rejs rej;
+	private Rejs rejs;
 
 	public Wypozyczenie() {
 	}
@@ -95,11 +95,11 @@ public class Wypozyczenie implements Serializable {
 	}
 
 	public Rejs getRej() {
-		return this.rej;
+		return this.rejs;
 	}
 
-	public void setRej(Rejs rej) {
-		this.rej = rej;
+	public void setRej(Rejs rejs) {
+		this.rejs = rejs;
 	}
 
 }

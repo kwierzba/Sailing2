@@ -14,11 +14,20 @@
         <p:panel id="panel" header="Dodaj Jacht" style="margin-bottom:10px;">
 
             <table>
-                <tr><td>Nazwa</td><td><p:inputText id="nazwa" value="#{JachtBean.jacht.jnazwa}" required="true" /></td></tr>
-                <tr><td>Typ</td><td><p:inputText id="typ" value="#{JachtBean.jacht.jtyp}" required="true" /></td></tr>
-                <tr><td>Max kg</td><td><p:inputText id="maxkg" value="#{JachtBean.jacht.jmaxkg}" required="true" /></td></tr>
-               <tr><td>Ilosc Osób</td><td><p:inputTextarea id="iloscosob" value="#{JachtBean.jacht.jiloscosob}" required="true" /></td></tr>
-                <tr><td></td><td><p:commandButton action="#{JachtBean.dodaj}" update="panel, growl" resetValues="true"  value="Dodaj" styleClass="delta">
+                <tr><td>
+ 				<p:outputLabel for="nazwa" value="Nazwa:" /></td><td>
+                <p:inputText id="nazwa" value="#{JachtBean.jacht.jnazwa}" required="true" /></td></tr>
+                <tr><td>
+                 <p:outputLabel for="typ" value="Typ:" /></td><td>
+                <p:inputText id="typ" value="#{JachtBean.jacht.jtyp}" required="true" /></td></tr>
+                <tr><td>
+                 <p:outputLabel for="maxkg" value="Max Kg:" /></td><td>
+                <p:inputText id="maxkg" value="#{JachtBean.jacht.jmaxkg}" required="true" /></td></tr>
+               <tr><td>
+                <p:outputLabel for="iloscosob" value="Ilość Osób:" /></td><td>
+               <p:inputTextarea id="iloscosob" value="#{JachtBean.jacht.jiloscosob}" required="true" /></td></tr>
+                <tr><td></td><td>
+                <p:commandButton action="#{JachtBean.dodaj}" update="panel, growl" resetValues="true"  value="Dodaj" styleClass="delta">
                 </p:commandButton> </td></tr>
             </table>
             </p:panel>

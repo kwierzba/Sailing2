@@ -31,4 +31,5 @@
   <description>ServletContextListener</description>
     <listener-class>pl.listener.SailingContextListener</listener-class>
   </listener>
+  
 </web-app>

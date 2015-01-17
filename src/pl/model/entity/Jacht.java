@@ -33,9 +33,9 @@ public class Jacht implements Serializable {
 	private String jtyp;
 
 	//bi-directional many-to-one association to Rejs
-	@OneToMany(mappedBy="jacht")
+	@OneToMany(mappedBy="jacht", fetch = FetchType.EAGER)
 	private List<Rejs> rejs;
-
+	
 	//bi-directional many-to-one association to Wypozyczenie
 	@OneToMany(mappedBy="jacht")
 	private List<Wypozyczenie> wypozyczenies;
@@ -91,18 +91,18 @@ public class Jacht implements Serializable {
 		this.rejs = rejs;
 	}
 
-	public Rejs addRej(Rejs rej) {
-		getRejs().add(rej);
-		rej.setJacht(this);
+	public Rejs addRej(Rejs rejs) {
+		getRejs().add(rejs);
+		rejs.setJacht(this);
 
-		return rej;
+		return rejs;
 	}
 
-	public Rejs removeRej(Rejs rej) {
-		getRejs().remove(rej);
-		rej.setJacht(null);
+	public Rejs removeRej(Rejs rejs) {
+		getRejs().remove(rejs);
+		rejs.setJacht(null);
 
-		return rej;
+		return rejs;
 	}
 
 	public List<Wypozyczenie> getWypozyczenies() {
@@ -127,4 +127,29 @@ public class Jacht implements Serializable {
 		return wypozyczeny;
 	}
 
+	
+	   @Override
+	    public int hashCode() {
+	        int hash = 0;
+	        hash += (id != null ? id.hashCode() : 0);
+	        return hash;
+	    }
+
+	    @Override
+	    public boolean equals(Object object) {
+	        // TODO: Warning - this method won't work in the case the id fields are not set
+	        if (!(object instanceof Jacht)) {
+	            return false;
+	        }
+	        Jacht other = (Jacht) object;
+	        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+	            return false;
+	        }
+	        return true;
+	    }
+
+	    @Override
+	    public String toString() {
+	        return "pl.model.entity.Jacht[ id=" + id + " ]";
+	    }
 }

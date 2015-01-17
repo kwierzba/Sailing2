@@ -51,7 +51,7 @@ public class Najemca implements Serializable {
 	public Najemca() {
 	}
 
-	public long getId() {
+	public Integer getId() {
 		return this.id;
 	}
 

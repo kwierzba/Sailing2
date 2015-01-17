@@ -10,42 +10,42 @@
 <h:form id="form"> 
 <p:growl id="growl" showDetail="true"/> 
 
- <p:dataTable id="table"  value="#{JachtBean.lista}"  var="jacht">
+ <p:dataTable id="table"  value="#{RejsBean.lista}"  var="rejs">
     <p:column headerText="Id">
-        <h:outputText value="#{jacht.id}" />
+        <h:outputText value="#{rejs.id}" />
     </p:column>
  
-    <p:column headerText="Nazwa">
-        <h:outputText value="#{jacht.jnazwa}" />
+    <p:column headerText="Data Zaokrętowania">
+        <h:outputText value="#{rejs.rdatapocz}" />
     </p:column>
  
-    <p:column headerText="Typ">
-        <h:outputText value="#{jacht.jtyp}" />
+    <p:column headerText="Data Wyokrętowania">
+        <h:outputText value="#{rejs.rdatakoniec}" />
     </p:column>
  
-    <p:column headerText="Max Kg">
-        <h:outputText value="#{jacht.jmaxkg}" />
+    <p:column headerText="Port Zaokrętowania">
+        <h:outputText value="#{rejs.rportpocz}" />
     </p:column>
     
-    <p:column headerText="Ilość Osób">
-        <h:outputText value="#{jacht.jiloscosob}" />
+    <p:column headerText="Port Wyokrętowania">
+        <h:outputText value="#{rejs.rportkoncowy}" />
     </p:column>
     
     <p:column headerText="Edytuj">
         <p:commandLink id="edytuj" value="Edytuj" 
-                                       action="#{JachtBean.zaladujDoEdycji}" 
-                                       actionListener="#{JachtBean.jachtListener}">
+                                       action="#{RejsBean.zaladujDoEdycji}" 
+                                       actionListener="#{RejsBean.rejsListener}">
                             <f:param name="jachtID" value="#{jacht.id}"/>
         </p:commandLink>
     </p:column>
     
     <p:column headerText="Usuń">
         <p:commandLink id="usun" value="Usuń" 
-                                       action="#{JachtBean.usun}" 
-                                       actionListener="#{JachtBean.jachtListener}"
+                                       action="#{RejsBean.usun}" 
+                                       actionListener="#{RejsBean.rejsListener}"
                                        update=":form"
                                        oncomplete="table.filter();">
-                            <f:param name="jachtID" value="#{jacht.id}"/>
+                            <f:param name="rejsID" value="#{rejs.id}"/>
         </p:commandLink> 
     </p:column>
 </p:dataTable>

@@ -2,9 +2,11 @@
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
-                template="./szablonAplikacji.xhtml">
+                template="./szablonAplikacji.xhtml"
+                xmlns:p="http://primefaces.org/ui">
     <ui:define name="content">
-        <h1>System przychodni lekarskich</h1>
-        <p> Welcome to the sides of the medical clinics system. With our system you can easily manage the basic functionality of the medical clinic. We invite you to use the menu on the left .</p>
+   <p:panel id="panel" header="System wypozyczalni jachtów" style="margin-bottom:10px;">
+        <p>Witamy w systemie wypożyczalni jachtu, wybierz odpowiedni zakładkę z panelu bocznego aby zaczać</p>
+   </p:panel>
     </ui:define>
 </ui:composition>
