@@ -16,11 +16,15 @@
     </p:column>
  
     <p:column headerText="Data Zaokrętowania">
-        <h:outputText value="#{rejs.rdatapocz}" />
+        <h:outputText value="#{rejs.rdatapocz}">
+        <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
+        </h:outputText>
     </p:column>
  
     <p:column headerText="Data Wyokrętowania">
-        <h:outputText value="#{rejs.rdatakoniec}" />
+        <h:outputText value="#{rejs.rdatakoniec}">
+        <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
+        </h:outputText>
     </p:column>
  
     <p:column headerText="Port Zaokrętowania">
@@ -31,11 +35,15 @@
         <h:outputText value="#{rejs.rportkoncowy}" />
     </p:column>
     
+    <p:column headerText="Jacht">
+        <h:outputText value="#{rejs.jacht.jnazwa}" />
+    </p:column>
+    
     <p:column headerText="Edytuj">
         <p:commandLink id="edytuj" value="Edytuj" 
                                        action="#{RejsBean.zaladujDoEdycji}" 
                                        actionListener="#{RejsBean.rejsListener}">
-                            <f:param name="jachtID" value="#{jacht.id}"/>
+                            <f:param name="rejsID" value="#{rejs.id}"/>
         </p:commandLink>
     </p:column>
     

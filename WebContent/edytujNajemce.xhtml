@@ -12,11 +12,11 @@
 	<p:growl id="growl" showDetail="true"/> 
     <p:panel id="panel" header="Edytuj Najemce" style="margin-bottom:10px;">
     <h:panelGrid columns="2" columnClasses="column" cellpadding="4">
-        <p:outputLabel for="imie" value="Imie:" />
+        <p:outputLabel for="imie" value="Imie:" required="true"/>
         <p:inplace id="imie">
             <p:inputText value="#{NajemcaBean.najemca.nimie}" required="true"/>
         </p:inplace>
-        <p:outputLabel for="nazwisko" value="Nazwisko:" />
+        <p:outputLabel for="nazwisko" value="Nazwisko:" required="true"/>
         <p:inplace id="nazwisko">
             <p:inputText value="#{NajemcaBean.najemca.nnazwisko}" required="true"/>
         </p:inplace>
@@ -36,7 +36,7 @@
         <p:inplace id="nrtelefonu">
             <p:inputMask id="phone" value="#{NajemcaBean.najemca.ntelefon}" mask="999-999-999"/>
         </p:inplace>
-        <p:outputLabel for="pesel" value="Pesel:"/>
+        <p:outputLabel for="pesel" value="Pesel:" required="true"/>
         <p:inplace id="pesel">
              <p:inputMask id="nrpesel" value="#{NajemcaBean.najemca.npesel}" required="true" mask="99999999999" />
         </p:inplace>

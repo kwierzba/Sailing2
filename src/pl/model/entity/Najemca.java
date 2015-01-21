@@ -1,7 +1,9 @@
 package pl.model.entity;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.List;
 
 
@@ -42,11 +44,11 @@ public class Najemca implements Serializable {
 
 	//bi-directional many-to-one association to Uzytkownik
 	@OneToMany(mappedBy="najemca")
-	private List<Uzytkownik> uzytkowniks;
+	private List<Uzytkownik> uzytkownik;
 
 	//bi-directional many-to-one association to Wypozyczenie
 	@OneToMany(mappedBy="najemca")
-	private List<Wypozyczenie> wypozyczenies;
+	private List<Wypozyczenie> wypozyczenie;
 
 	public Najemca() {
 	}
@@ -115,48 +117,73 @@ public class Najemca implements Serializable {
 		this.nulica = nulica;
 	}
 
-	public List<Uzytkownik> getUzytkowniks() {
-		return this.uzytkowniks;
+	public List<Uzytkownik> getUzytkownik() {
+		return this.uzytkownik;
 	}
 
-	public void setUzytkowniks(List<Uzytkownik> uzytkowniks) {
-		this.uzytkowniks = uzytkowniks;
+	public void setUzytkownik(List<Uzytkownik> uzytkownik) {
+		this.uzytkownik = uzytkownik;
 	}
 
 	public Uzytkownik addUzytkownik(Uzytkownik uzytkownik) {
-		getUzytkowniks().add(uzytkownik);
+		getUzytkownik().add(uzytkownik);
 		uzytkownik.setNajemca(this);
 
 		return uzytkownik;
 	}
 
 	public Uzytkownik removeUzytkownik(Uzytkownik uzytkownik) {
-		getUzytkowniks().remove(uzytkownik);
+		getUzytkownik().remove(uzytkownik);
 		uzytkownik.setNajemca(null);
 
 		return uzytkownik;
 	}
 
-	public List<Wypozyczenie> getWypozyczenies() {
-		return this.wypozyczenies;
+	public List<Wypozyczenie> getWypozyczenie() {
+		return this.wypozyczenie;
 	}
 
-	public void setWypozyczenies(List<Wypozyczenie> wypozyczenies) {
-		this.wypozyczenies = wypozyczenies;
+	public void setWypozyczenie(List<Wypozyczenie> wypozyczenie) {
+		this.wypozyczenie = wypozyczenie;
 	}
 
 	public Wypozyczenie addWypozyczeny(Wypozyczenie wypozyczeny) {
-		getWypozyczenies().add(wypozyczeny);
+		getWypozyczenie().add(wypozyczeny);
 		wypozyczeny.setNajemca(this);
 
 		return wypozyczeny;
 	}
 
 	public Wypozyczenie removeWypozyczeny(Wypozyczenie wypozyczeny) {
-		getWypozyczenies().remove(wypozyczeny);
+		getWypozyczenie().remove(wypozyczeny);
 		wypozyczeny.setNajemca(null);
 
 		return wypozyczeny;
 	}
+	
+	   @Override
+	    public int hashCode() {
+	        int hash = 0;
+	        hash += (id != null ? id.hashCode() : 0);
+	        return hash;
+	    }
+
+	    @Override
+	    public boolean equals(Object object) {
+	        // TODO: Warning - this method won't work in the case the id fields are not set
+	        if (!(object instanceof Najemca)) {
+	            return false;
+	        }
+	        Najemca other = (Najemca) object;
+	        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+	            return false;
+	        }
+	        return true;
+	    }
+
+	    @Override
+	    public String toString() {
+	        return "pl.model.entity.Najemca[ id=" + id + " ]";
+	    }
 
 }

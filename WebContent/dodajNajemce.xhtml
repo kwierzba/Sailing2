@@ -15,10 +15,10 @@
 
             <table>
                 <tr><td>
-                <p:outputLabel for="imie" value="Imie:" /></td><td>
+                <p:outputLabel for="imie" value="Imie:" required="true"/></td><td>
                 <p:inputText id="imie" value="#{NajemcaBean.najemca.nimie}" required="true" /></td></tr>
                 <tr><td>
-                <p:outputLabel for="nazwisko" value="Nazwisko:" /></td><td>
+                <p:outputLabel for="nazwisko" value="Nazwisko:" required="true"/></td><td>
                 <p:inputText id="nazwisko" value="#{NajemcaBean.najemca.nnazwisko}" required="true" /></td></tr>
                 <tr><td>
                 <p:outputLabel for="miasto" value="Miasto:" /></td><td>
@@ -34,7 +34,7 @@
         		</td><td>
                 <p:inputMask id="phone" value="#{NajemcaBean.najemca.ntelefon}" mask="999-999-999"/></td></tr>
                 <tr><td>
-				<p:outputLabel for="nrpesel" value="Pesel:" /></td><td>
+				<p:outputLabel for="nrpesel" value="Pesel:" required="true"/></td><td>
                 <p:inputMask id="nrpesel" value="#{NajemcaBean.najemca.npesel}" required="true" mask="99999999999" /></td></tr>
                 <tr><td></td><td>
                 <p:commandButton action="#{NajemcaBean.dodaj}" update="panel, growl" resetValues="true"  value="Dodaj" styleClass="delta">

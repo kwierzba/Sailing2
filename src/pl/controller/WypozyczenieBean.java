@@ -7,63 +7,63 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.persistence.EntityManager;
 import pl.config.DBManager;
-import pl.model.entity.Uzytkownik;
+import pl.model.entity.Wypozyczenie;
 
-public class UzytkownikBean {
-	private Uzytkownik uzytkownik = new Uzytkownik();
+public class WypozyczenieBean {
+	private Wypozyczenie wypozyczenie = new Wypozyczenie();
 
-	public Uzytkownik getUzytkownik() {
-		return uzytkownik;
+	public Wypozyczenie getWypozyczenie() {
+		return wypozyczenie;
 	}
 
-	public void setUzytkownik(Uzytkownik uzytkownik) {
-		this.uzytkownik = uzytkownik;
+	public void setWypozyczenie(Wypozyczenie wypozyczenie) {
+		this.wypozyczenie = wypozyczenie;
 	}
 
 	//
 
-	public List<Uzytkownik> getLista() {
+	public List<Wypozyczenie> getLista() {
 		EntityManager em = DBManager.getManager().createEntityManager();
-		List list = em.createNamedQuery("Uzytkownik.findAll").getResultList();
+		List list = em.createNamedQuery("Wypozyczenie.findAll").getResultList();
 		em.close();
 		return list;
 	}
 
-	public void uzytkownikListener(ActionEvent ae) {
+	public void wypozyczenieListener(ActionEvent ae) {
 		String ids = FacesContext.getCurrentInstance().getExternalContext()
-				.getRequestParameterMap().get("uzytkownikID").toString();
+				.getRequestParameterMap().get("wypozyczenieID").toString();
 		int jId = Integer.parseInt(ids);
-		this.uzytkownik.setId(jId);
+		this.wypozyczenie.setId(jId);
 	}
 
 	public String zaladujDoEdycji() {
 		EntityManager em = DBManager.getManager().createEntityManager();
-		this.uzytkownik = em.find(Uzytkownik.class, uzytkownik.getId());
+		this.wypozyczenie = em.find(Wypozyczenie.class, wypozyczenie.getId());
 		em.close();
-		return "edytujUzytkownika.xhtml";
+		return "edytujWypozyczenie.xhtml";
 	}
 
 	public String usun() {
 		EntityManager em = DBManager.getManager().createEntityManager();
 		em.getTransaction().begin();
-		this.uzytkownik = em.find(Uzytkownik.class, uzytkownik.getId());
-		em.remove(this.uzytkownik);
-		this.uzytkownik = new Uzytkownik();
+		this.wypozyczenie = em.find(Wypozyczenie.class, wypozyczenie.getId());
+		em.remove(this.wypozyczenie);
+		this.wypozyczenie = new Wypozyczenie();
 		em.getTransaction().commit();
 		em.close();
-		this.dodajInformacje("Usunieto U퓓tkownika!");
+		this.dodajInformacje("Usunieto Wypo퓓czenie!");
 		return null;
 	}
 
 	public String dodaj() {
 		EntityManager em = DBManager.getManager().createEntityManager();
 		em.getTransaction().begin();
-		uzytkownik.setId(null);
-		em.persist(uzytkownik);
+		wypozyczenie.setId(null);
+		em.persist(wypozyczenie);
 		em.getTransaction().commit();
-		this.dodajInformacje("Dodano U퓓tkownika!");
+		this.dodajInformacje("Dodano Wypo퓓czenie!");
 		em.close();
-		this.uzytkownik = new Uzytkownik();
+		this.wypozyczenie = new Wypozyczenie();
 		return null;
 	}
 	
@@ -71,16 +71,18 @@ public class UzytkownikBean {
 	public String edytuj() {
 		EntityManager em = DBManager.getManager().createEntityManager();
 		em.getTransaction().begin();
-		em.merge(uzytkownik);
+		em.merge(wypozyczenie);
 		em.getTransaction().commit();
 		em.close();
-		this.dodajInformacje("Zmieniono dane u퓓tkownika!");
-		this.uzytkownik = new Uzytkownik();
-		return "pokazUzytkownika.xhtml";
+		this.dodajInformacje("Zmieniono dane wypo퓓czenia!");
+		this.wypozyczenie = new Wypozyczenie();
+		return "pokazWypozyczenie.xhtml";
 	}
 
 	public void dodajInformacje(String s) {
 		FacesContext.getCurrentInstance().addMessage(null,
 				new FacesMessage(FacesMessage.SEVERITY_INFO, s, ""));
 	}
+	
+
 }

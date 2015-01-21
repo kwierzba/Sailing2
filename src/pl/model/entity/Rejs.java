@@ -7,7 +7,6 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
-
 /**
  * The persistent class for the REJS database table.
  * 
@@ -43,7 +42,7 @@ public class Rejs implements Serializable {
 
 	//bi-directional many-to-one association to Wypozyczenie
 	@OneToMany(mappedBy="rejs")
-	private List<Wypozyczenie> wypozyczenies;
+	private List<Wypozyczenie> wypozyczenie;
 
 	public Rejs() {
 	}
@@ -97,23 +96,23 @@ public class Rejs implements Serializable {
 	}
 
 	public List<Wypozyczenie> getWypozyczenies() {
-		return this.wypozyczenies;
+		return this.wypozyczenie;
 	}
 
-	public void setWypozyczenies(List<Wypozyczenie> wypozyczenies) {
-		this.wypozyczenies = wypozyczenies;
+	public void setWypozyczenies(List<Wypozyczenie> wypozyczenie) {
+		this.wypozyczenie = wypozyczenie;
 	}
 
 	public Wypozyczenie addWypozyczeny(Wypozyczenie wypozyczeny) {
 		getWypozyczenies().add(wypozyczeny);
-		wypozyczeny.setRej(this);
+		wypozyczeny.setRejs(this);
 
 		return wypozyczeny;
 	}
 
 	public Wypozyczenie removeWypozyczeny(Wypozyczenie wypozyczeny) {
 		getWypozyczenies().remove(wypozyczeny);
-		wypozyczeny.setRej(null);
+		wypozyczeny.setRejs(null);
 
 		return wypozyczeny;
 	}

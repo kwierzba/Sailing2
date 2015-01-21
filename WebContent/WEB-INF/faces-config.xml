@@ -24,10 +24,27 @@
 		<managed-bean-class>pl.controller.UzytkownikBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+		<managed-bean>
+		<managed-bean-name>WypozyczenieBean</managed-bean-name>
+		<managed-bean-class>pl.controller.WypozyczenieBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 	
 	<converter>
         <converter-id>jachtConverter</converter-id>
         <converter-class>pl.config.JachtConverter</converter-class>
+    </converter>
+   	<converter>
+        <converter-id>rejsConverter</converter-id>
+        <converter-class>pl.config.RejsConverter</converter-class>
+    </converter>
+    <converter>
+        <converter-id>najemcaConverter</converter-id>
+        <converter-class>pl.config.NajemcaConverter</converter-class>
+    </converter>
+    <converter>
+        <converter-id>uzytkownikConverter</converter-id>
+        <converter-class>pl.config.UzytkownikConverter</converter-class>
     </converter>
 
 </faces-config>

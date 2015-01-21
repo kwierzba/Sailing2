@@ -1,7 +1,9 @@
 package pl.model.entity;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.Date;
 
 
@@ -17,7 +19,7 @@ public class Wypozyczenie implements Serializable {
 
 	@Id
 	@Column(unique=true, nullable=false, precision=22)
-	private long id;
+	private Integer id;
 
 	@Column(nullable=false, length=10)
 	private String wcena;
@@ -28,29 +30,24 @@ public class Wypozyczenie implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date wdatazwrot;
 
-	//bi-directional many-to-one association to Jacht
-	@ManyToOne
-	@JoinColumn(name="JIDFK", nullable=false)
-	private Jacht jacht;
-
 	//bi-directional many-to-one association to Najemca
-	@ManyToOne
-	@JoinColumn(name="NIDFK", nullable=false)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="NIDFK", nullable=false, referencedColumnName = "id")
 	private Najemca najemca;
 
 	//bi-directional many-to-one association to Rejs
-	@ManyToOne
-	@JoinColumn(name="RIDFK", nullable=false)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="RIDFK", nullable=false, referencedColumnName = "id")
 	private Rejs rejs;
 
 	public Wypozyczenie() {
 	}
 
-	public long getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -78,14 +75,6 @@ public class Wypozyczenie implements Serializable {
 		this.wdatazwrot = wdatazwrot;
 	}
 
-	public Jacht getJacht() {
-		return this.jacht;
-	}
-
-	public void setJacht(Jacht jacht) {
-		this.jacht = jacht;
-	}
-
 	public Najemca getNajemca() {
 		return this.najemca;
 	}
@@ -94,12 +83,37 @@ public class Wypozyczenie implements Serializable {
 		this.najemca = najemca;
 	}
 
-	public Rejs getRej() {
+	public Rejs getRejs() {
 		return this.rejs;
 	}
 
-	public void setRej(Rejs rejs) {
+	public void setRejs(Rejs rejs) {
 		this.rejs = rejs;
 	}
 
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+	
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Wypozyczenie)) {
+            return false;
+        }
+        Wypozyczenie other = (Wypozyczenie) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "pl.model.entity.Wypozyczenie[ id=" + id + " ]";
+    }
+	
 }

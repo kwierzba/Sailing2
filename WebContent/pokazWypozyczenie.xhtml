@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./szablonAplikacji.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+    <ui:define name="content">
+<h:form id="form"> 
+<p:growl id="growl" showDetail="true"/> 
+
+ <p:dataTable id="table"  value="#{WypozyczenieBean.lista}"  var="wypozyczenie">
+    <p:column headerText="Id">
+        <h:outputText value="#{wypozyczenie.id}" />
+    </p:column>
+ 
+    <p:column headerText="Data Wypożyczenia">
+        <h:outputText value="#{wypozyczenie.wdata}">
+        <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
+        </h:outputText>
+    </p:column>
+ 
+    <p:column headerText="Data Zwrotu">
+        <h:outputText value="#{wypozyczenie.wdatazwrot}">
+        <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
+        </h:outputText>
+    </p:column>
+ 
+    <p:column headerText="Cena">
+        <h:outputText value="#{wypozyczenie.wcena}"/>
+    </p:column>
+    
+    <p:column headerText="Data Zaokrętowania">
+        <h:outputText value="#{wypozyczenie.rejs.rdatapocz}" >
+        <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
+        </h:outputText>
+    </p:column>
+    
+    <p:column headerText="Data Wyokrętowania">
+        <h:outputText value="#{wypozyczenie.rejs.rdatakoniec}" >
+        <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
+        </h:outputText>
+    </p:column>
+    
+    <p:column headerText="Jacht">
+        <h:outputText value="#{wypozyczenie.rejs.jacht.jnazwa}" />
+    </p:column>
+    
+    <p:column headerText="Najemca">
+        <h:outputText value="#{wypozyczenie.najemca.nimie} #{wypozyczenie.najemca.nnazwisko}" />
+    </p:column>
+    
+    
+    <p:column headerText="Edytuj">
+        <p:commandLink id="edytuj" value="Edytuj" 
+                                       action="#{WypozyczenieBean.zaladujDoEdycji}" 
+                                       actionListener="#{WypozyczenieBean.wypozyczenieListener}">
+                            <f:param name="wypozyczenieID" value="#{wypozyczenie.id}"/>
+        </p:commandLink>
+    </p:column>
+    
+    <p:column headerText="Usuń">
+        <p:commandLink id="usun" value="Usuń" 
+                                       action="#{WypozyczenieBean.usun}" 
+                                       actionListener="#{WypozyczenieBean.wypozyczenieListener}"
+                                       update=":form"
+                                       oncomplete="table.filter();">
+                            <f:param name="wypoyczenieID" value="#{wypozyczenie.id}"/>
+        </p:commandLink> 
+    </p:column>
+</p:dataTable>
+
+</h:form>
+</ui:define>
+</ui:composition>

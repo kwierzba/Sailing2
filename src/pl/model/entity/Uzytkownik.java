@@ -1,8 +1,9 @@
 package pl.model.entity;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
-import java.math.BigDecimal;
+
 
 
 /**
@@ -17,10 +18,11 @@ public class Uzytkownik implements Serializable {
 
 	@Id
 	@Column(unique=true, nullable=false, precision=22)
-	private long id;
+	private Integer id;
 
-	@Column(precision=22)
-	private BigDecimal ridfk;
+	@JoinColumn(name="RIDFK", nullable=false, referencedColumnName = "id")
+	@ManyToOne(fetch = FetchType.EAGER)
+	private Rejs rejs;
 
 	@Column(nullable=false, length=15)
 	private String uimie;
@@ -47,27 +49,27 @@ public class Uzytkownik implements Serializable {
 	private String uulica;
 
 	//bi-directional many-to-one association to Najemca
-	@ManyToOne
-	@JoinColumn(name="NIDFK")
+	@JoinColumn(name="NIDFK", nullable=false, referencedColumnName = "id")
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Najemca najemca;
 
 	public Uzytkownik() {
 	}
 
-	public long getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public BigDecimal getRidfk() {
-		return this.ridfk;
+	public Rejs getRejs() {
+		return this.rejs;
 	}
 
-	public void setRidfk(BigDecimal ridfk) {
-		this.ridfk = ridfk;
+	public void setRejs(Rejs rejs) {
+		this.rejs = rejs;
 	}
 
 	public String getUimie() {
@@ -141,5 +143,30 @@ public class Uzytkownik implements Serializable {
 	public void setNajemca(Najemca najemca) {
 		this.najemca = najemca;
 	}
+	
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+	
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Uzytkownik)) {
+            return false;
+        }
+        Uzytkownik other = (Uzytkownik) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "pl.model.entity.Uzytkownik[ id=" + id + " ]";
+    }
 
 }

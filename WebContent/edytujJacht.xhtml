@@ -12,19 +12,19 @@
 	<p:growl id="growl" showDetail="true"/> 
     <p:panel id="panel" header="Edytuj Jacht" style="margin-bottom:10px;">
     <h:panelGrid columns="2" columnClasses="column" cellpadding="4">
-        <p:outputLabel for="nazwa" value="Nazwa:" />
+        <p:outputLabel for="nazwa" value="Nazwa:" required="true"/>
         <p:inplace id="nazwa">
             <p:inputText value="#{JachtBean.jacht.jnazwa}" required="true"/>
         </p:inplace>
-        <p:outputLabel for="typ" value="Typ:" />
+        <p:outputLabel for="typ" value="Typ:" required="true"/>
         <p:inplace id="typ">
             <p:inputText value="#{JachtBean.jacht.jtyp}" required="true"/>
         </p:inplace>
-        <p:outputLabel for="maxkg" value="Max Kg:" />
+        <p:outputLabel for="maxkg" value="Max Kg:" required="true"/>
         <p:inplace id="maxkg">
             <p:inputText value="#{JachtBean.jacht.jmaxkg}" required="true"/>
         </p:inplace>
-        <p:outputLabel for="iloscosob" value="Ilosc Osób:"/>
+        <p:outputLabel for="iloscosob" value="Ilosc Osób:" required="true"/>
         <p:inplace id="iloscosob">
             <p:inputText value="#{JachtBean.jacht.jiloscosob}" required="true"/>
         </p:inplace>

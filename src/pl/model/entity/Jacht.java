@@ -36,9 +36,6 @@ public class Jacht implements Serializable {
 	@OneToMany(mappedBy="jacht", fetch = FetchType.EAGER)
 	private List<Rejs> rejs;
 	
-	//bi-directional many-to-one association to Wypozyczenie
-	@OneToMany(mappedBy="jacht")
-	private List<Wypozyczenie> wypozyczenies;
 
 	public Jacht() {
 	}
@@ -91,41 +88,20 @@ public class Jacht implements Serializable {
 		this.rejs = rejs;
 	}
 
-	public Rejs addRej(Rejs rejs) {
+	public Rejs addRejs(Rejs rejs) {
 		getRejs().add(rejs);
 		rejs.setJacht(this);
 
 		return rejs;
 	}
 
-	public Rejs removeRej(Rejs rejs) {
+	public Rejs removeRejs(Rejs rejs) {
 		getRejs().remove(rejs);
 		rejs.setJacht(null);
 
 		return rejs;
 	}
 
-	public List<Wypozyczenie> getWypozyczenies() {
-		return this.wypozyczenies;
-	}
-
-	public void setWypozyczenies(List<Wypozyczenie> wypozyczenies) {
-		this.wypozyczenies = wypozyczenies;
-	}
-
-	public Wypozyczenie addWypozyczeny(Wypozyczenie wypozyczeny) {
-		getWypozyczenies().add(wypozyczeny);
-		wypozyczeny.setJacht(this);
-
-		return wypozyczeny;
-	}
-
-	public Wypozyczenie removeWypozyczeny(Wypozyczenie wypozyczeny) {
-		getWypozyczenies().remove(wypozyczeny);
-		wypozyczeny.setJacht(null);
-
-		return wypozyczeny;
-	}
 
 	
 	   @Override

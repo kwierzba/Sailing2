@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="./szablonAplikacji.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:p="http://primefaces.org/ui">
+    
+    <ui:define name="content">
+
+        <h:form>
+        <p:growl id="growl" showDetail="true"/> 
+        <p:panel id="panel" header="Dodaj Użytkownika" style="margin-bottom:10px;">
+
+            <table>
+                <tr><td>
+ 				<p:outputLabel for="imie" value="Imie:" required="true"/></td><td>
+                <p:inputText id="imie" value="#{UzytkownikBean.uzytkownik.uimie}" required="true" /></td></tr>
+                <tr><td>
+                <p:outputLabel for="nazwisko" value="Nazwisko:" /></td><td>
+                <p:inputText id="nazwisko" value="#{UzytkownikBean.uzytkownik.unazwisko}" required="true" /></td></tr>
+                <tr><td>
+                <p:outputLabel for="miasto" value="Miasto:" /></td><td>
+                <p:inputText id="miasto" value="#{UzytkownikBean.uzytkownik.umiasto}" required="true" /></td></tr>
+               	<tr><td>
+                <p:outputLabel for="ulica" value="Ulica:" /></td><td>
+               	<p:inputTextarea id="ulica" value="#{UzytkownikBean.uzytkownik.uulica}" required="true" /></td></tr>
+               	<tr><td>
+                <p:outputLabel for="nrlokalu" value="Numer Lokalu:" /></td><td>
+               	<p:inputTextarea id="nrlokalu" value="#{UzytkownikBean.uzytkownik.unrlokalu}" required="true" /></td></tr>
+               	<tr><td>
+                <p:outputLabel for="nrtelefon" value="Numer Telefonu:" /></td><td>
+               	<p:inputMask id="nrtelefon" value="#{UzytkownikBean.uzytkownik.utelefon}" mask="999-999-999" required="true" /></td></tr>
+               	<tr><td>
+                <p:outputLabel for="pesel" value="Pesel:" /></td><td>
+               	<p:inputMask id="pesel" value="#{UzytkownikBean.uzytkownik.upesel}" mask="99999999999" required="true" /></td></tr>
+               	<tr><td>
+                <p:outputLabel for="patent" value="Numer Patentu:" /></td><td>
+               	<p:inputTextarea id="patent" value="#{UzytkownikBean.uzytkownik.upatent}" required="true" /></td></tr>
+               	<tr><td>
+                <p:outputLabel for="rejs" value="Rejs:" /></td><td>
+               	<p:selectOneMenu id="rejs" value="#{UzytkownikBean.uzytkownik.rejs}" var="r" required="true" 
+               	filter="true" filterMatchMode="contains" style="width:200px" PanelStyle="width:400px">
+                                  <f:converter converterId="rejsConverter" />
+                                  <f:selectItems value="#{RejsBean.lista}"
+                                           var="rejs" itemValue="#{rejs}"
+                                           itemLabel="#{rejs.rportpocz}, #{rejs.rportkoncowy}, #{rejs.jacht.jnazwa}"/>
+                                           
+							            <p:column>
+							                <h:outputText value="#{r.rdatapocz}">
+							                <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
+							                </h:outputText>
+							            </p:column>
+							 
+							            <p:column>
+							                <h:outputText value="#{r.rdatakoniec}">
+							                <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
+							                </h:outputText>
+							            </p:column>
+							            
+							             <p:column>
+							                <h:outputText value="#{r.rportpocz}"/>
+							                
+							            </p:column>
+							                         <p:column>
+							                <h:outputText value="#{r.rportkoncowy}"/>
+							                
+							            </p:column>
+							            
+							             <p:column>
+							                <h:outputText value="#{r.jacht.jnazwa}"/>
+							                
+							            </p:column>
+                </p:selectOneMenu></td></tr>
+                <tr><td>
+                <p:outputLabel for="najemca" value="Najemca:" /></td><td>
+               	<p:selectOneMenu id="najemca" value="#{UzytkownikBean.uzytkownik.najemca}" required="true"
+               	filter="true" filterMatchMode="contains" style="width:200px">
+                                  <f:converter converterId="najemcaConverter"/>
+                                  <f:selectItems value="#{NajemcaBean.lista}"
+                                           var="najemca" itemValue="#{najemca}"
+                                           itemLabel="#{najemca.nimie} #{najemca.nnazwisko}"/>
+                </p:selectOneMenu></td></tr>
+                <tr><td></td><td>
+                <p:commandButton action="#{UzytkownikBean.dodaj}" update="panel, growl" resetValues="true"  value="Dodaj" styleClass="delta">
+                </p:commandButton> </td></tr>
+            </table>
+            </p:panel>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

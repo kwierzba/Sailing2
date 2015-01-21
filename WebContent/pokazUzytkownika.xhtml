@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./szablonAplikacji.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+    <ui:define name="content">
+<h:form id="form"> 
+<p:growl id="growl" showDetail="true"/> 
+
+ <p:dataTable id="table"  value="#{UzytkownikBean.lista}"  var="uzytkownik">
+    <p:column headerText="Id">
+        <h:outputText value="#{uzytkownik.id}" />
+    </p:column>
+ 
+    <p:column headerText="Imie">
+        <h:outputText value="#{uzytkownik.uimie}">
+        </h:outputText>
+    </p:column>
+ 
+    <p:column headerText="Nazwisko">
+        <h:outputText value="#{uzytkownik.unazwisko}">
+        </h:outputText>
+    </p:column>
+ 
+    <p:column headerText="Miasto">
+        <h:outputText value="#{uzytkownik.umiasto}" />
+    </p:column>
+    
+    <p:column headerText="Ulica">
+        <h:outputText value="#{uzytkownik.uulica}" />
+    </p:column>
+    
+    <p:column headerText="Numer Lokalu">
+        <h:outputText value="#{uzytkownik.unrlokalu}" />
+    </p:column>
+    
+    <p:column headerText="Telefon">
+        <h:outputText value="#{uzytkownik.utelefon}" />
+    </p:column>
+    
+    <p:column headerText="Pesel">
+        <h:outputText value="#{uzytkownik.upesel}" />
+    </p:column>
+    
+    <p:column headerText="Patent">
+        <h:outputText value="#{uzytkownik.upatent}" />
+    </p:column>
+    
+    <p:column headerText="Edytuj">
+        <p:commandLink id="edytuj" value="Edytuj" 
+                                       action="#{UzytkownikBean.zaladujDoEdycji}" 
+                                       actionListener="#{UzytkownikBean.uzytkownikListener}">
+                            <f:param name="uzytkownikID" value="#{uzytkownik.id}"/>
+        </p:commandLink>
+    </p:column>
+    
+    <p:column headerText="Usuń">
+        <p:commandLink id="usun" value="Usuń" 
+                                       action="#{UzytkownikBean.usun}" 
+                                       actionListener="#{UzytkownikBean.uzytkownikListener}"
+                                       update=":form"
+                                       oncomplete="table.filter();">
+                            <f:param name="uzytkownikID" value="#{uzytkownik.id}"/>
+        </p:commandLink> 
+    </p:column>
+</p:dataTable>
+
+</h:form>
+</ui:define>
+</ui:composition>

@@ -10,7 +10,9 @@
 <h:form id="form"> 
 <p:growl id="growl" showDetail="true"/> 
 
- <p:dataTable id="table"  value="#{JachtBean.lista}"  var="jacht">
+ <p:dataTable id="table"  value="#{JachtBean.lista}"  var="jacht" widgetVar="jachtTable" 
+ emptyMessage="No cars found with given criteria" footerText="contains" filterMatchMode="contains">
+
     <p:column headerText="Id">
         <h:outputText value="#{jacht.id}" />
     </p:column>

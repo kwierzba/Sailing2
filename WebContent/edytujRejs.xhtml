@@ -12,23 +12,32 @@
 	<p:growl id="growl" showDetail="true"/> 
     <p:panel id="panel" header="Edytuj rejs" style="margin-bottom:10px;">
     <h:panelGrid columns="2" columnClasses="column" cellpadding="4">
-        <p:outputLabel for="datapocz" value="Data Zaokrętowania:" />
+        <p:outputLabel for="datapocz" value="Data Zaokrętowania:" required="true"/>
         <p:inplace id="datapocz">
             <p:calendar value="#{RejsBean.rejs.rdatapocz}" pattern="dd-MM-yyyy" mask="true" required="true" />
         </p:inplace>
-        <p:outputLabel for="datakoniec" value="Data Wyokrętowania:" />
+        <p:outputLabel for="datakoniec" value="Data Wyokrętowania:" required="true"/>
         <p:inplace id="datakoniec">
             <p:calendar value="#{RejsBean.rejs.rdatakoniec}" pattern="dd-MM-yyyy" mask="true" required="true" />
         </p:inplace>
-        <p:outputLabel for="portpocz" value="Port Zaokrętowania:" />
+        <p:outputLabel for="portpocz" value="Port Zaokrętowania:" required="true"/>
         <p:inplace id="portpocz">
             <p:inputText value="#{RejsBean.rejs.rportpocz}" required="true"/>
         </p:inplace>
-        <p:outputLabel for="portkoniec" value="Port Wyokrętowania:"/>
+        <p:outputLabel for="portkoniec" value="Port Wyokrętowania:" required="true"/>
         <p:inplace id="portkoniec">
             <p:inputText value="#{RejsBean.rejs.rportkoncowy}" required="true"/>
         </p:inplace>
-
+        <p:outputLabel for="jj" value="Jacht:" required="true"/>
+        <p:inplace id="jj" value="#{RejsBean.rejs.jacht.jnazwa}">
+        <p:selectOneMenu id="jacht" value="#{RejsBean.rejs.jacht}" required="true"
+          filter="true" filterMatchMode="contains" style="width:125px">
+                                  <f:converter converterId="jachtConverter" />
+                                  <f:selectItems value="#{JachtBean.lista}"
+                                           var="jacht" itemValue="#{jacht}"
+                                           itemLabel="#{jacht.jnazwa}"/>
+        </p:selectOneMenu>
+		</p:inplace>
 </h:panelGrid>
 </p:panel>
 <p:commandButton action="#{RejsBean.edytuj}" value="Zapisz" update="panel, growl" resetValues="true" styleClass="delta"/>

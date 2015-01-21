@@ -15,20 +15,21 @@
 
             <table>
                 <tr><td>
- 				<p:outputLabel for="datapocz" value="Data Zaokrętowania:" /></td><td>
+ 				<p:outputLabel for="datapocz" value="Data Zaokrętowania:" required="true"/></td><td>
                 <p:calendar id="datapocz" value="#{RejsBean.rejs.rdatapocz}" pattern="yyyy-MM-dd" mask="true" required="true" /></td></tr>
                 <tr><td>
-                <p:outputLabel for="datakon" value="Data Wyokrętowania:" /></td><td>
+                <p:outputLabel for="datakon" value="Data Wyokrętowania:" required="true"/></td><td>
                 <p:calendar id="datakon" value="#{RejsBean.rejs.rdatakoniec}" pattern="yyyy-MM-dd" mask="true" required="true" /></td></tr>
                 <tr><td>
-                <p:outputLabel for="portpocz" value="Port Zaokrętowania:" /></td><td>
+                <p:outputLabel for="portpocz" value="Port Zaokrętowania:" required="true" /></td><td>
                 <p:inputText id="portpocz" value="#{RejsBean.rejs.rportpocz}" required="true" /></td></tr>
                	<tr><td>
-                <p:outputLabel for="portkoniec" value="Port Wyokrętowania:" /></td><td>
+                <p:outputLabel for="portkoniec" value="Port Wyokrętowania:" required="true"/></td><td>
                	<p:inputTextarea id="portkoniec" value="#{RejsBean.rejs.rportkoncowy}" required="true" /></td></tr>
                	<tr><td>
-                <p:outputLabel for="jacht" value="Jacht:" /></td><td>
-               	<p:selectOneMenu id="jacht" value="#{RejsBean.rejs.jacht}" required="true" style="width:125px">
+                <p:outputLabel for="jacht" value="Jacht:" required="true"/></td><td>
+               	<p:selectOneMenu id="jacht" value="#{RejsBean.rejs.jacht}" required="true"
+               	filter="true" filterMatchMode="contains" style="width:125px">
                                   <f:converter converterId="jachtConverter" />
                                   <f:selectItems value="#{JachtBean.lista}"
                                            var="jacht" itemValue="#{jacht}"
