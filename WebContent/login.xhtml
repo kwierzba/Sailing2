@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="./szablonAplikacji.xhtml" 
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html">
+	<ui:define name="content">
+	
+	<h:form>
+        <p:growl id="growl" showDetail="true"/> 
+		<p:panel id="panel" header="System wypozyczalni jachtów"
+			style="margin-bottom:10px;">
+<table>
+                <tr><td>
+ 				<p:outputLabel for="imie" value="Login:" required="true"/></td><td>
+                <p:inputText id="imie" value="#{UzytkownikBean.uzytkownik.uimie}" required="true" /></td></tr>
+                <tr><td>
+                <p:outputLabel for="nazwisko" value="Hasło:" /></td><td>
+                <p:inputText id="nazwisko" value="#{UzytkownikBean.uzytkownik.unazwisko}" required="true" type="password" /></td></tr>
+                <tr><td></td><td>
+                <p:commandButton action="#{UzytkownikBean.logon}" update = "panel, growl" resetValues="true" value="Login" styleClass="delta">
+                </p:commandButton> </td></tr>
+</table>
+		</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

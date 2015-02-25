@@ -6,7 +6,9 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.persistence.EntityManager;
+
 import pl.config.DBManager;
+import pl.config.UzytkownikConverter;
 import pl.model.entity.Uzytkownik;
 
 public class UzytkownikBean {
@@ -79,6 +81,21 @@ public class UzytkownikBean {
 		return "pokazUzytkownika.xhtml";
 	}
 
+	public String logon(){
+		EntityManager em = DBManager.getManager().createEntityManager();
+		Uzytkownik test = (Uzytkownik) em.createQuery("SELECT u FROM Uzytkownik u WHERE u.uimie = '" + this.uzytkownik.getUimie() + "' "
+				+ "AND u.unazwisko = '" + this.uzytkownik.getUnazwisko() + "'")
+				.getSingleResult();
+		//if(em.find(Uzytkownik.class, uzytkownik.getUimie()))
+		//String sImie = 	this.uzytkownik.getUimie();
+		//String sNazwisko = this.uzytkownik.getUnazwisko();
+		em.close();
+		if(test.getId()!=null)
+			return "success";
+		else return "failure";
+		
+	}
+	
 	public void dodajInformacje(String s) {
 		FacesContext.getCurrentInstance().addMessage(null,
 				new FacesMessage(FacesMessage.SEVERITY_INFO, s, ""));

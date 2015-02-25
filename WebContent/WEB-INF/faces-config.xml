@@ -46,5 +46,19 @@
         <converter-id>uzytkownikConverter</converter-id>
         <converter-class>pl.config.UzytkownikConverter</converter-class>
     </converter>
+    
+    <navigation-rule>
+    	<from-view-id>login.xhtml</from-view-id>
+    		<navigation-case>
+    			<from-action>#{UzytkownikBean.logon}</from-action>
+    			<from-outcome>success</from-outcome>
+    			<to-view-id>indexAdmin.xhtml</to-view-id>
+    		</navigation-case>
+    		<navigation-case>
+    			<from-action>#{UzytkownikBean.logon}</from-action>
+    			<from-outcome>failure</from-outcome>
+    			<to-view-id>login.xhtml</to-view-id>
+    		</navigation-case>
+    </navigation-rule>
 
 </faces-config>
